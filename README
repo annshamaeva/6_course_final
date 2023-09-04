@@ -1,0 +1,9 @@
+Начало проекта:
+npm init
+npm install express
+npm install -D nodemon
+Вставить в paсkage.json в "scripts":
+"start": "node src/app.js",
+"dev": "nodemon/app.js"
+Чтобы загрузить переменные окружения: 
+npm i dotenv
