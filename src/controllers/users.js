@@ -29,7 +29,9 @@ const createUser = (request, response) => {
 const updateUser = (request, response) => {
     // Update user
     const { user_id } = request.params; // получили id, который передается в параметре (задаем номер пользователя в адресе сайта после / )
-    return User.findByIdAndUpdate(user_id, { ...request.body }).then(
+    return User.findByIdAndUpdate(user_id, { ...request.body }, 
+        //indByIdAndUpdate по умолчанию возвращает информацию о пользователе до изменений (то есть старые даннные, даже если мы только что команду на обновление имени), а нам нужно, чтобы возвращались обновленные данные.
+        { new: true, runValidators: true }).then(
         (user) => { response.status(200).send(user) }
     ).catch(e => response.status(500).send(e.message));
 }

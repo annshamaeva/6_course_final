@@ -29,7 +29,8 @@ const createBook = (request, response) => {
 const updateBook = (request, response) => {
     // Update book
     const { book_id } = request.params; // получили id, который передается в параметре (задаем номер пользователя в адресе сайта после / )
-    return Book.findByIdAndUpdate(book_id, { ...request.body }).then(
+    return Book.findByIdAndUpdate(book_id, { ...request.body },
+        { new: true, runValidators: true }).then(
         (book) => { response.status(200).send(book) }
     ).catch(e => response.status(500).send(e.message));
 }

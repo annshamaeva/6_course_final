@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         required: true, // оно является обязательным
         minLength: 2, // должно состоять минимум из 2 символов
     },
+    books: {
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'book' }],
+        default: [],
+      }
 });
 
 module.exports = mongoose.model('user', userSchema)
